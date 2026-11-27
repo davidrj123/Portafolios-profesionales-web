@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Academic Showcase — dos estudiantes, dos trayectorias, un semestre.">
+  <title>Academic Showcase — Semester Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="ambient ambient--blue"></div>
+  <div class="ambient ambient--violet"></div>
+  <div class="grain"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Academic Showcase, inicio" data-home>
+      <span class="brand-mark">A<span>/</span>S</span>
+      <span class="brand-name">ACADEMIC<br>SHOWCASE</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      <button class="nav-link is-active" data-home>Inicio</button>
+      <button class="nav-link" data-comparison>Comparar</button>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <span class="theme-icon">☼</span>
+      </button>
+      <button class="icon-button menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" aria-label="Menú móvil">
+    <button data-home>Inicio</button>
+    <button data-comparison>Comparar estudiantes</button>
+    <button class="mobile-theme">Cambiar tema</button>
+  </nav>
+
+  <main>
+    <section class="selection-screen screen is-visible" id="selection-screen">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> SEGUNDO SEMESTRE · PROGRAMACIÓN WEB I <span></span></div>
+        <h1>Two students.<br>Two journeys.<br><em>One semester.</em></h1>
+        <p>Explora el trabajo, el progreso y la trayectoria académica de nuestros estudiantes.</p>
+      </div>
+
+      <div class="campus-scene" aria-hidden="true">
+        <div class="campus-halo"></div>
+        <div class="campus-building">
+          <div class="building-roof"></div>
+          <div class="building-windows"></div>
+          <div class="building-entry"></div>
+        </div>
+        <div class="campus-ground"></div>
+      </div>
+
+      <div class="student-selection">
+        <article class="student-card student-card--blue" data-student-card="guillermo">
+          <div class="card-light"></div>
+          <div class="student-visual">
+            <div class="portrait-placeholder">
+              <span class="portrait-initial">G</span>
+              <span class="portrait-caption">FOTOGRAFÍA<br>PRÓXIMAMENTE</span>
+            </div>
+            <div class="portrait-orbit"></div>
+          </div>
+          <div class="student-info">
+            <span class="student-number">01 <i>— BLUE IDENTITY</i></span>
+            <h2>Guillermo David<br>Rojas Jimenez</h2>
+            <p>INGENIERÍA DE SISTEMAS<br>INFORMÁTICOS</p>
+            <button class="explore-button" data-open-student="guillermo">
+              Explorar perfil <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <span class="card-index">01</span>
+        </article>
+
+        <div class="versus-mark" aria-hidden="true"><span> / </span></div>
+
+        <article class="student-card student-card--violet" data-student-card="eduardo">
+          <div class="card-light"></div>
+          <div class="student-visual">
+            <div class="portrait-placeholder">
+              <span class="portrait-initial">E</span>
+              <span class="portrait-caption">FOTOGRAFÍA<br>PRÓXIMAMENTE</span>
+            </div>
+            <div class="portrait-orbit"></div>
+          </div>
+          <div class="student-info">
+            <span class="student-number">02 <i>— VIOLET IDENTITY</i></span>
+            <h2>Eduardo Yabeta<br>Zamorano</h2>
+            <p>INGENIERÍA DE SISTEMAS<br>INFORMÁTICOS</p>
+            <button class="explore-button" data-open-student="eduardo">
+              Explorar perfil <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <span class="card-index">02</span>
+        </article>
+      </div>
+
+      <div class="scroll-cue">
+        <span class="mouse"><i></i></span>
+        <span>SCROLL PARA DESCUBRIR</span>
+        <span class="scroll-arrow">↓</span>
+      </div>
+      <div class="hero-footer">
+        <span>INGENIERÍA DE SISTEMAS INFORMÁTICOS</span>
+        <span>ACADEMIC SHOWCASE <b>© 2026</b></span>
+      </div>
+    </section>
+
+    <section class="profile-screen screen" id="profile-screen" aria-live="polite">
+      <div class="profile-topline">
+        <button class="back-button" data-home>← <span>Volver a estudiantes</span></button>
+        <span class="profile-kicker">STUDENT PROFILE / <b id="profile-number">01</b></span>
+      </div>
+      <section class="profile-hero" id="profile-hero">
+        <div class="profile-glow"></div>
+        <div class="profile-hero-content">
+          <span class="eyebrow" id="profile-eyebrow">STUDENT 01 · BLUE IDENTITY</span>
+          <h1 id="profile-name">Guillermo David<br>Rojas Jimenez</h1>
+          <p>Ingeniería de Sistemas Informáticos · Segundo semestre</p>
+          <a href="#profile-overview" class="text-link">Explorar trayectoria <span>↓</span></a>
+        </div>
+        <div class="profile-portrait" id="profile-portrait"><span id="profile-initial">G</span><small>FOTOGRAFÍA<br>PRÓXIMAMENTE</small></div>
+      </section>
+
+      <section class="profile-overview content-section" id="profile-overview">
+        <div class="section-heading">
+          <span class="eyebrow">01 / SEMESTER OVERVIEW</span>
+          <h2>Un semestre de<br><em>aprendizaje.</em></h2>
+          <p>Un recorrido por las actividades, los conocimientos y los proyectos desarrollados durante Programación Web I.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-value" data-stat="tasks">—</span><span class="stat-label">Trabajos registrados</span></div>
+          <div class="stat-card"><span class="stat-value" data-stat="subjects">01</span><span class="stat-label">Materia</span></div>
+          <div class="stat-card"><span class="stat-value" data-stat="individual">—</span><span class="stat-label">Trabajos individuales</span></div>
+          <div class="stat-card"><span class="stat-value" data-stat="group">—</span><span class="stat-label">Trabajos grupales</span></div>
+        </div>
+      </section>
+
+      <section class="work-section content-section">
+        <div class="section-heading section-heading--row">
+          <div><span class="eyebrow">02 / SELECTED WORKS</span><h2>Trabajos <em>realizados.</em></h2></div>
+          <span class="work-count">PROGRAMACIÓN WEB I</span>
+        </div>
+        <div class="empty-work-state">
+          <div class="empty-icon">✳</div>
+          <h3>Los proyectos están por llegar.</h3>
+          <p>En esta sección aparecerán las actividades, evidencias y proyectos realizados durante el semestre.</p>
+          <span>CONTENIDO EN PREPARACIÓN</span>
+        </div>
+      </section>
+      <footer class="profile-footer"><span>ACADEMIC SHOWCASE</span><button data-home>← Volver a selección</button></footer>
+    </section>
+
+    <section class="comparison-screen screen" id="comparison-screen">
+      <div class="comparison-heading">
+        <span class="eyebrow">A SIDE-BY-SIDE VIEW · 2026</span>
+        <h1>Dos caminos.<br><em>Una mirada compartida.</em></h1>
+        <p>Una comparación visual y objetiva de las actividades realizadas por ambos estudiantes.</p>
+      </div>
+      <div class="comparison-columns">
+        <article class="comparison-person comparison-person--blue">
+          <span>01 / GUILLERMO</span><h2>Guillermo David<br>Rojas Jimenez</h2>
+          <div class="comparison-number">— <small>trabajos registrados</small></div>
+          <div class="comparison-line"><i></i></div>
+        </article>
+        <article class="comparison-person comparison-person--violet">
+          <span>02 / EDUARDO</span><h2>Eduardo Yabeta<br>Zamorano</h2>
+          <div class="comparison-number">— <small>trabajos registrados</small></div>
+          <div class="comparison-line"><i></i></div>
+        </article>
+      </div>
+      <p class="comparison-note">Los indicadores se completarán cuando se incorporen los trabajos reales. Esta sección no determina ganadores.</p>
+      <button class="back-button comparison-back" data-home>← Volver al inicio</button>
+    </section>
+  </main>
+
+  <div class="transition-overlay" aria-hidden="true"><div class="transition-word">ACADEMIC<br>SHOWCASE</div></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

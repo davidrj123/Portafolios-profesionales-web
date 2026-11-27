@@ -1,0 +1,14 @@
+/* Animaciones de entrada y microinteracciones. GSAP controla las transiciones principales. */
+.student-card { animation: card-rise .9s cubic-bezier(.2,.8,.2,1) both; }
+.student-card--violet { animation-delay: .14s; }
+.hero-copy { animation: hero-reveal 1s .12s both; }
+.scroll-cue { animation: cue-reveal 1s 1s both; }
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(35px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-reveal {
+  from { opacity: 0; transform: translateY(22px); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes cue-reveal { from { opacity: 0; } to { opacity: 1; } }
