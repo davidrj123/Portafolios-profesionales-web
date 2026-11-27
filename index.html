@@ -25,7 +25,7 @@
 
     <nav class="desktop-nav" aria-label="Navegación principal">
       <button class="nav-link is-active" data-home>Inicio</button>
-      <button class="nav-link" data-comparison>Comparar</button>
+      <button class="nav-link" data-comparison>Comparación</button>
     </nav>
 
     <div class="header-actions">
@@ -48,8 +48,8 @@
     <section class="selection-screen screen is-visible" id="selection-screen">
       <div class="hero-copy">
         <div class="eyebrow"><span></span> SEGUNDO SEMESTRE · PROGRAMACIÓN WEB I <span></span></div>
-        <h1>Two students.<br>Two journeys.<br><em>One semester.</em></h1>
-        <p>Explora el trabajo, el progreso y la trayectoria académica de nuestros estudiantes.</p>
+        <h1>Dos estudiantes.<br>Dos trayectorias.<br><em>Un semestre.</em></h1>
+        <p>Un espacio compartido para explorar el aprendizaje y los trabajos de cada estudiante.</p>
       </div>
 
       <div class="campus-scene" aria-hidden="true">
@@ -76,8 +76,9 @@
             <span class="student-number" data-student-meta></span>
             <h2 data-student-name></h2>
             <p data-student-career></p>
+            <p class="student-description">Explora su trayectoria académica y los trabajos desarrollados durante el semestre.</p>
             <button class="explore-button" data-open-student="guillermo">
-              Explorar perfil <span aria-hidden="true">↗</span>
+              Ver portafolio <span aria-hidden="true">↗</span>
             </button>
           </div>
           <span class="card-index">01</span>
@@ -98,23 +99,39 @@
             <span class="student-number" data-student-meta></span>
             <h2 data-student-name></h2>
             <p data-student-career></p>
+            <p class="student-description">Explora su trayectoria académica y los trabajos desarrollados durante el semestre.</p>
             <button class="explore-button" data-open-student="eduardo">
-              Explorar perfil <span aria-hidden="true">↗</span>
+              Ver portafolio <span aria-hidden="true">↗</span>
             </button>
           </div>
           <span class="card-index">02</span>
         </article>
       </div>
 
+      <section class="showcase-values" aria-label="Características del portafolio">
+        <article class="showcase-value">
+          <span>01</span>
+          <div><h2>Dos perfiles</h2><p>Trayectorias individuales dentro de una experiencia compartida.</p></div>
+        </article>
+        <article class="showcase-value">
+          <span>02</span>
+          <div><h2>Trabajo académico</h2><p>Actividades, proyectos y evidencias organizados por estudiante.</p></div>
+        </article>
+        <article class="showcase-value">
+          <span>03</span>
+          <div><h2>Progreso visible</h2><p>Estadísticas basadas en los trabajos registrados.</p></div>
+        </article>
+      </section>
+
       <div class="scroll-cue">
         <span class="mouse"><i></i></span>
         <span>SCROLL PARA DESCUBRIR</span>
         <span class="scroll-arrow">↓</span>
       </div>
-      <div class="hero-footer">
+      <footer class="hero-footer">
         <span>INGENIERÍA DE SISTEMAS INFORMÁTICOS</span>
         <span>ACADEMIC SHOWCASE <b>© 2026</b></span>
-      </div>
+      </footer>
     </section>
 
     <section class="profile-screen screen" id="profile-screen" aria-live="polite">
@@ -122,6 +139,11 @@
         <button class="back-button" data-home>← <span>Volver a estudiantes</span></button>
         <span class="profile-kicker">STUDENT PROFILE / <b id="profile-number">01</b></span>
       </div>
+      <nav class="profile-nav" aria-label="Navegación del perfil">
+        <a href="#profile-overview">Resumen</a>
+        <a href="#profile-capabilities">Habilidades y tecnologías</a>
+        <a href="#profile-work">Trabajos y proyectos</a>
+      </nav>
       <section class="profile-hero" id="profile-hero">
         <div class="profile-glow"></div>
         <div class="profile-hero-content">
@@ -147,14 +169,32 @@
         </div>
       </section>
 
-      <section class="work-section content-section">
+      <section class="capabilities-section content-section" id="profile-capabilities">
+        <div class="section-heading">
+          <span class="eyebrow">02 / SKILLS & TECHNOLOGIES</span>
+          <h2>Conocimientos<br><em>en desarrollo.</em></h2>
+          <p>Este espacio se completar&aacute; cuando haya información registrada para el perfil.</p>
+        </div>
+        <div class="capabilities-grid">
+          <article class="capability-card">
+            <span class="capability-index">01</span>
+            <div><h3>Habilidades</h3><p>Información pendiente de registro.</p></div>
+          </article>
+          <article class="capability-card">
+            <span class="capability-index">02</span>
+            <div><h3>Tecnologías</h3><p>Información pendiente de registro.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="work-section content-section" id="profile-work">
         <div class="section-heading section-heading--row">
-          <div><span class="eyebrow">02 / SELECTED WORKS</span><h2>Trabajos <em>realizados.</em></h2></div>
+          <div><span class="eyebrow">03 / ACADEMIC PORTFOLIO</span><h2>Trabajos <em>realizados.</em></h2></div>
           <span class="work-count">PROGRAMACIÓN WEB I</span>
         </div>
         <div class="empty-work-state" data-empty-work>
           <div class="empty-icon">✳</div>
-          <h3>Los proyectos están por llegar.</h3>
+          <h3>El portafolio está en preparación.</h3>
           <p>En esta sección aparecerán las actividades, evidencias y proyectos realizados durante el semestre.</p>
           <span>CONTENIDO EN PREPARACIÓN</span>
         </div>
@@ -171,12 +211,18 @@
       </div>
       <div class="comparison-columns">
         <article class="comparison-person comparison-person--blue" data-comparison-student="guillermo">
-          <span data-comparison-label></span><h2 data-comparison-name></h2>
+          <div class="comparison-person-heading">
+            <span class="comparison-initial" data-comparison-initial></span>
+            <div><span data-comparison-label></span><h2 data-comparison-name></h2><p data-comparison-career></p></div>
+          </div>
           <div class="comparison-number"><span data-comparison-count>—</span> <small>trabajos registrados</small></div>
           <div class="comparison-line"><i data-comparison-bar></i></div>
         </article>
         <article class="comparison-person comparison-person--violet" data-comparison-student="eduardo">
-          <span data-comparison-label></span><h2 data-comparison-name></h2>
+          <div class="comparison-person-heading">
+            <span class="comparison-initial" data-comparison-initial></span>
+            <div><span data-comparison-label></span><h2 data-comparison-name></h2><p data-comparison-career></p></div>
+          </div>
           <div class="comparison-number"><span data-comparison-count>—</span> <small>trabajos registrados</small></div>
           <div class="comparison-line"><i data-comparison-bar></i></div>
         </article>
