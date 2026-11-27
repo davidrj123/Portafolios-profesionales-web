@@ -31,6 +31,8 @@ Y abrir `http://localhost:5500`.
 - `js/portfolio.js`: carga de portafolios independientes y renderizado de trabajos, proyectos y evidencias.
 - `js/tasks.js`: cálculo de estadísticas de trabajos.
 - `js/comparison.js`: actualización de la comparación con datos de ambos portafolios.
+- `js/filters.js`: búsqueda, filtros y ordenamiento de trabajos.
+- `js/project-detail.js`: vista detallada y validación de evidencias.
 - `js/animations.js`: transiciones GSAP.
 - `data/students.json`: información compartida de los estudiantes.
 - `data/guillermo/portfolio.json`: trabajos, proyectos y evidencias de Guillermo.
@@ -39,9 +41,9 @@ Y abrir `http://localhost:5500`.
 
 Cada archivo `portfolio.json` contiene tres listas independientes: `tasks`, `projects` y `evidence`. Pueden permanecer vacías.
 
-Los trabajos requieren `id`, `title` y `type` (`individual` o `grupal`). Pueden incluir `description`, `fullDescription`, `subject`, `date`, `category`, `activityType`, `coverImage`, `technologies`, `reflection` y `learnings`. Los proyectos requieren `id` y `title`, y pueden usar los mismos campos opcionales, salvo `type`. Las evidencias llevan `id`, `title`, `url`, `workId` y `workType` (`task` o `project`) para asociarlas a un trabajo o proyecto.
+Los trabajos requieren `id`, `title` y `type` (`individual` o `grupal`). Pueden incluir `description`, `fullDescription`, `subject`, `date`, `category`, `activityType`, `coverImage`, `technologies`, `reflection` y `learnings`. Los proyectos requieren `id` y `title`, y pueden usar los mismos campos opcionales, salvo `type`. Las evidencias llevan `id`, `title`, `workId` y `workType` (`task` o `project`) para asociarlas a un trabajo o proyecto. Usan `url` para enlaces externos seguros o `path` para archivos y imágenes relativos dentro del sitio.
 
-Las categorías y tecnologías se renderizan únicamente cuando existen en los datos. `activityType` debe usar un valor coherente con los filtros, como `practica` o `investigacion`, y `date` debe ser una fecha ISO válida cuando se registre. Las URL de portadas y evidencias deben usar HTTP o HTTPS. La interfaz y las estadísticas se actualizan desde estos datos sin cambios de JavaScript al incorporar registros válidos.
+Las categorías y tecnologías se renderizan únicamente cuando existen en los datos. `activityType` debe usar un valor coherente con los filtros, como `practica` o `investigacion`, y `date` debe ser una fecha ISO válida cuando se registre. Las URL externas deben usar HTTP o HTTPS. Las rutas locales deben ser relativas al sitio y no pueden ser rutas absolutas del equipo. El campo opcional `type` admite `image`, `pdf`, `document`, `github`, `video` o `link`. La interfaz y las estadísticas se actualizan desde estos datos sin cambios de JavaScript al incorporar registros válidos.
 
 ## Próximos pasos
 1. Reemplazar los marcadores de fotografía por retratos reales.

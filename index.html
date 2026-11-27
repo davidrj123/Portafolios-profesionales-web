@@ -137,12 +137,17 @@
     <section class="profile-screen screen" id="profile-screen" aria-live="polite">
       <div class="profile-topline">
         <button class="back-button" data-home>← <span>Volver a estudiantes</span></button>
-        <span class="profile-kicker">STUDENT PROFILE / <b id="profile-number">01</b></span>
+        <div class="profile-topline-actions">
+          <span class="profile-kicker">STUDENT PROFILE / <b id="profile-number">01</b></span>
+          <button type="button" class="profile-switch" data-profile-switch="guillermo" data-open-student="guillermo">Guillermo</button>
+          <button type="button" class="profile-switch" data-profile-switch="eduardo" data-open-student="eduardo">Eduardo</button>
+        </div>
       </div>
       <nav class="profile-nav" aria-label="Navegación del perfil">
         <a href="#profile-overview">Resumen</a>
         <a href="#profile-capabilities">Habilidades y tecnologías</a>
         <a href="#profile-work">Trabajos y proyectos</a>
+        <a href="#profile-timeline">Línea temporal</a>
       </nav>
       <section class="profile-hero" id="profile-hero">
         <div class="profile-glow"></div>
@@ -166,6 +171,9 @@
           <div class="stat-card"><span class="stat-value" data-stat="subjects">01</span><span class="stat-label">Materia</span></div>
           <div class="stat-card"><span class="stat-value" data-stat="individual">—</span><span class="stat-label">Trabajos individuales</span></div>
           <div class="stat-card"><span class="stat-value" data-stat="group">—</span><span class="stat-label">Trabajos grupales</span></div>
+          <div class="stat-card"><span class="stat-value" data-stat="projects">00</span><span class="stat-label">Proyectos</span></div>
+          <div class="stat-card"><span class="stat-value" data-stat="categories">00</span><span class="stat-label">Categorías</span></div>
+          <div class="stat-card"><span class="stat-value" data-stat="technologies">00</span><span class="stat-label">Tecnologías utilizadas</span></div>
         </div>
       </section>
 
@@ -231,6 +239,19 @@
           </div>
         </div>
       </section>
+
+      <section class="timeline-section content-section" id="profile-timeline">
+        <div class="section-heading">
+          <span class="eyebrow">04 / ACADEMIC TIMELINE</span>
+          <h2>Evolución<br><em>académica.</em></h2>
+          <p>Una lectura cronológica de los trabajos que tienen una fecha registrada.</p>
+        </div>
+        <div class="timeline-empty" data-timeline-empty>
+          <h3>Aún no hay actividades cronológicas.</h3>
+          <p>Los elementos aparecerán cuando existan trabajos con una fecha registrada.</p>
+        </div>
+        <ol class="timeline-list" data-timeline-list hidden></ol>
+      </section>
       <footer class="profile-footer"><span>ACADEMIC SHOWCASE</span><button data-home>← Volver a selección</button></footer>
     </section>
 
@@ -246,7 +267,17 @@
             <span class="comparison-initial" data-comparison-initial></span>
             <div><span data-comparison-label></span><h2 data-comparison-name></h2><p data-comparison-career></p></div>
           </div>
-          <div class="comparison-number"><span data-comparison-count>—</span> <small>trabajos registrados</small></div>
+          <div class="comparison-metrics">
+            <div><strong data-comparison-count>00</strong><span>Trabajos</span></div>
+            <div><strong data-comparison-projects>00</strong><span>Proyectos</span></div>
+            <div><strong data-comparison-individual>00</strong><span>Individuales</span></div>
+            <div><strong data-comparison-group>00</strong><span>Grupales</span></div>
+            <div><strong data-comparison-subjects>00</strong><span>Materias</span></div>
+            <div><strong data-comparison-categories>00</strong><span>Categorías</span></div>
+            <div><strong data-comparison-technologies>00</strong><span>Tecnologías</span></div>
+          </div>
+          <div class="comparison-tags"><span>Categorías</span><div data-comparison-category-list></div></div>
+          <div class="comparison-tags"><span>Tecnologías</span><div data-comparison-tech-list></div></div>
           <div class="comparison-line"><i data-comparison-bar></i></div>
         </article>
         <article class="comparison-person comparison-person--violet" data-comparison-student="eduardo">
@@ -254,11 +285,21 @@
             <span class="comparison-initial" data-comparison-initial></span>
             <div><span data-comparison-label></span><h2 data-comparison-name></h2><p data-comparison-career></p></div>
           </div>
-          <div class="comparison-number"><span data-comparison-count>—</span> <small>trabajos registrados</small></div>
+          <div class="comparison-metrics">
+            <div><strong data-comparison-count>00</strong><span>Trabajos</span></div>
+            <div><strong data-comparison-projects>00</strong><span>Proyectos</span></div>
+            <div><strong data-comparison-individual>00</strong><span>Individuales</span></div>
+            <div><strong data-comparison-group>00</strong><span>Grupales</span></div>
+            <div><strong data-comparison-subjects>00</strong><span>Materias</span></div>
+            <div><strong data-comparison-categories>00</strong><span>Categorías</span></div>
+            <div><strong data-comparison-technologies>00</strong><span>Tecnologías</span></div>
+          </div>
+          <div class="comparison-tags"><span>Categorías</span><div data-comparison-category-list></div></div>
+          <div class="comparison-tags"><span>Tecnologías</span><div data-comparison-tech-list></div></div>
           <div class="comparison-line"><i data-comparison-bar></i></div>
         </article>
       </div>
-      <p class="comparison-note">Los indicadores reflejan los trabajos registrados. Esta sección no determina ganadores.</p>
+      <p class="comparison-note">Las estadísticas dependen de los trabajos registrados y no representan una evaluación de capacidad académica.</p>
       <button class="back-button comparison-back" data-home>← Volver al inicio</button>
     </section>
   </main>

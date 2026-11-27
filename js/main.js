@@ -1,6 +1,6 @@
 import { loadStudents, setStudentName } from "./students.js";
-import { getTaskStats } from "./tasks.js";
-import { loadPortfolios, renderPortfolio } from "./portfolio.js";
+import { getPortfolioStats } from "./tasks.js";
+import { loadPortfolios, renderPortfolio, renderTimeline } from "./portfolio.js";
 import { renderComparison } from "./comparison.js";
 import { initNavigation, showScreen } from "./navigation.js";
 import { initEntranceAnimations, runScreenTransition } from "./animations.js";
@@ -20,16 +20,24 @@ function updateProfile(student) {
   document.querySelector("#profile-hero").style.setProperty("--profile-accent", student.color === "violet" ? "#c16aff" : "#35baff");
 
   const portfolio = portfolios[student.id];
-  const stats = getTaskStats(portfolio.tasks);
+  const stats = getPortfolioStats(portfolio, student.subject);
   document.querySelector('[data-stat="tasks"]').textContent = String(stats.total).padStart(2, "0");
-  document.querySelector('[data-stat="subjects"]').textContent = student.subject ? "01" : "00";
+  document.querySelector('[data-stat="subjects"]').textContent = String(stats.subjects).padStart(2, "0");
   document.querySelector('[data-stat="individual"]').textContent = String(stats.individual).padStart(2, "0");
   document.querySelector('[data-stat="group"]').textContent = String(stats.group).padStart(2, "0");
+  document.querySelector('[data-stat="projects"]').textContent = String(stats.projects).padStart(2, "0");
+  document.querySelector('[data-stat="categories"]').textContent = String(stats.categories).padStart(2, "0");
+  document.querySelector('[data-stat="technologies"]').textContent = String(stats.technologies).padStart(2, "0");
   document.querySelector(".profile-kicker b").style.color = student.color === "violet" ? "#c16aff" : "#35baff";
   document.querySelector(".profile-glow").style.background = student.color === "violet"
     ? "radial-gradient(ellipse, rgba(193,106,255,.2), transparent 70%)"
     : "radial-gradient(ellipse, rgba(35,160,255,.18), transparent 70%)";
   renderPortfolio(portfolio);
+  renderTimeline(portfolio);
+  document.querySelectorAll("[data-profile-switch]").forEach(button => {
+    const active = button.dataset.profileSwitch === student.id;
+    button.hidden = active;
+  });
 }
 
 function openStudent(id) {
@@ -59,11 +67,23 @@ function updateStudentCards() {
 const themeToggle = document.querySelector(".theme-toggle");
 function toggleTheme() {
   document.body.classList.toggle("light-theme");
-  localStorage.setItem("academic-showcase-theme", document.body.classList.contains("light-theme") ? "light" : "dark");
+  const theme = document.body.classList.contains("light-theme") ? "light" : "dark";
+  localStorage.setItem("academic-showcase-theme", theme);
+  syncThemeControls(theme);
+}
+function syncThemeControls(theme) {
+  const isLight = theme === "light";
+  document.querySelector(".theme-icon").textContent = isLight ? "☾" : "☼";
+  themeToggle.setAttribute("aria-label", isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro");
+  themeToggle.setAttribute("title", isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro");
+  document.querySelector(".mobile-theme").textContent = isLight ? "Usar modo oscuro" : "Usar modo claro";
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", isLight ? "#f3f5fa" : "#080d18");
 }
 themeToggle.addEventListener("click", toggleTheme);
 document.querySelector(".mobile-theme").addEventListener("click", toggleTheme);
-if (localStorage.getItem("academic-showcase-theme") === "light") document.body.classList.add("light-theme");
+const savedTheme = localStorage.getItem("academic-showcase-theme");
+if (savedTheme === "light") document.body.classList.add("light-theme");
+syncThemeControls(savedTheme === "light" ? "light" : "dark");
 
 async function init() {
   students = await loadStudents();

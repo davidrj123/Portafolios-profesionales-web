@@ -975,3 +975,244 @@ body.light-theme .mobile-menu { box-shadow: 0 20px 50px rgba(27, 41, 65, .12); }
   [data-detail-content] { padding: 52px 22px 28px; }
   .detail-meta { grid-template-columns: 92px minmax(0, 1fr); }
 }
+
+.stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.comparison-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 24px;
+}
+.comparison-metrics div {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-soft);
+  padding: 12px;
+}
+.comparison-metrics strong,
+.comparison-metrics span { display: block; }
+.comparison-metrics strong {
+  font: 600 20px var(--font-display);
+  margin-bottom: 4px;
+}
+.comparison-metrics span {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+.comparison-tags {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+.comparison-tags > span {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .08em;
+  padding-top: 5px;
+  text-transform: uppercase;
+}
+.comparison-tags [data-comparison-category-list],
+.comparison-tags [data-comparison-tech-list] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.comparison-tag {
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 5px 8px;
+  color: var(--text);
+  font-size: 9px;
+}
+.comparison-tag--empty { color: var(--muted); }
+.comparison-person .comparison-line { margin-top: 18px; }
+.detail-evidence {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.detail-evidence figure {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+.detail-evidence figure img {
+  width: 100%;
+  max-height: 220px;
+  display: block;
+  object-fit: cover;
+}
+.detail-evidence figcaption {
+  color: var(--muted);
+  font-size: 10px;
+  padding: 9px;
+}
+.evidence-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: var(--profile-tone, var(--blue));
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 680px) {
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .comparison-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .comparison-tags { grid-template-columns: 68px minmax(0, 1fr); }
+  .detail-evidence { grid-template-columns: 1fr; }
+}
+
+.profile-topline-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.profile-switch {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  padding: 7px 11px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.profile-switch:hover {
+  border-color: var(--profile-tone, var(--blue));
+  color: var(--text);
+  transform: translateY(-1px);
+}
+.profile-switch[hidden] { display: none; }
+.profile-nav a.is-active {
+  border-color: var(--line);
+  background: var(--surface-soft);
+  color: var(--text);
+}
+.profile-nav a.is-active::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 5px;
+  background: var(--profile-tone, var(--blue));
+}
+.timeline-section { --timeline-accent: var(--profile-tone, var(--blue)); }
+.timeline-empty {
+  min-height: 180px;
+  margin-top: 30px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: var(--surface-soft);
+  padding: 24px;
+}
+.timeline-empty[hidden] { display: none; }
+.timeline-empty h3 { margin: 0 0 8px; font: 600 18px var(--font-display); }
+.timeline-empty p { margin: 0; color: var(--muted); font-size: 12px; }
+.timeline-list {
+  position: relative;
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 0;
+}
+.timeline-list[hidden] { display: none; }
+.timeline-list::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 8px;
+  width: 1px;
+  background: linear-gradient(var(--timeline-accent), var(--line));
+}
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 18px;
+  padding-bottom: 18px;
+}
+.timeline-marker {
+  position: relative;
+  z-index: 1;
+  width: 17px;
+  height: 17px;
+  margin-top: 17px;
+  border: 4px solid var(--bg);
+  border-radius: 50%;
+  background: var(--timeline-accent);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.timeline-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  padding: 18px 20px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.timeline-card:hover {
+  border-color: color-mix(in srgb, var(--timeline-accent) 45%, var(--line));
+  transform: translateX(3px);
+}
+.timeline-date {
+  display: block;
+  color: var(--timeline-accent);
+  font: 600 10px var(--font-display);
+  letter-spacing: .12em;
+  margin-bottom: 8px;
+}
+.timeline-card h3 {
+  margin: 0;
+  font: 600 18px/1.25 var(--font-display);
+  overflow-wrap: anywhere;
+}
+.timeline-meta {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+.timeline-description {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.icon-button, .nav-link, .back-button, .profile-footer button,
+.work-filter, .category-filter, .work-detail-button, .detail-close {
+  transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
+}
+.student-card, .work-card, .stat-card, .capability-card {
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.work-detail-dialog {
+  opacity: 0;
+  transform: translateY(12px) scale(.985);
+  transition: opacity .22s ease, transform .22s ease, overlay .22s ease allow-discrete;
+}
+.work-detail-dialog[open] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+body.light-theme .timeline-marker { border-color: var(--bg); }
+body.light-theme .work-detail-dialog::backdrop { background: rgba(35, 48, 70, .38); }
+@media (max-width: 680px) {
+  .profile-topline-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .profile-kicker { width: 100%; text-align: right; }
+  .profile-switch { min-height: 32px; padding: 6px 9px; }
+  .timeline-card { padding: 16px; }
+  .timeline-card:hover { transform: none; }
+}

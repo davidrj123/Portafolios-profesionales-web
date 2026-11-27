@@ -38,9 +38,12 @@ function isPortfolio(value) {
     if (!isRecord(item)
       || typeof item.id !== "string"
       || typeof item.title !== "string"
-      || typeof item.url !== "string"
       || typeof item.workId !== "string"
       || !["task", "project"].includes(item.workType)) return false;
+    if (item.url !== undefined && typeof item.url !== "string") return false;
+    if (item.path !== undefined && typeof item.path !== "string") return false;
+    if (!item.url && !item.path) return false;
+    if (item.type !== undefined && typeof item.type !== "string") return false;
     const works = item.workType === "task" ? value.tasks : value.projects;
     return works.some(work => work.id === item.workId);
   });
@@ -75,6 +78,18 @@ function isSafeEvidenceUrl(value) {
     return ["http:", "https:"].includes(new URL(value, window.location.href).protocol);
   } catch {
     return false;
+  }
+}
+
+function getSafeAssetTarget(value) {
+  if (typeof value !== "string") return null;
+  if (isSafeEvidenceUrl(value)) return value;
+  if (/^(?:[A-Za-z]:[\\/]|\\\\|\/)/.test(value) || value.split(/[\\/]/).includes("..")) return null;
+  try {
+    const url = new URL(value, window.location.href);
+    return url.origin === window.location.origin ? url.href : null;
+  } catch {
+    return null;
   }
 }
 
@@ -157,10 +172,11 @@ export function renderPortfolio(portfolio) {
       card.className = "work-card";
 
       if (work.coverImage) {
-        if (isSafeEvidenceUrl(work.coverImage)) {
+        const coverTarget = getSafeAssetTarget(work.coverImage);
+        if (coverTarget) {
           const image = document.createElement("img");
           image.className = "work-cover";
-          image.src = work.coverImage;
+          image.src = coverTarget;
           image.alt = "";
           image.loading = "lazy";
           card.append(image);
@@ -236,4 +252,58 @@ export function renderPortfolio(portfolio) {
     };
   }
   update();
+}
+
+export function renderTimeline(portfolio) {
+  const emptyState = document.querySelector("[data-timeline-empty]");
+  const list = document.querySelector("[data-timeline-list]");
+  const works = [
+    ...portfolio.tasks.map(task => ({ ...task, kind: "task" })),
+    ...portfolio.projects.map(project => ({ ...project, kind: "project" }))
+  ];
+  const datedWorks = works
+    .filter(work => isValidDate(work.date))
+    .sort((left, right) => left.date.localeCompare(right.date));
+
+  list.replaceChildren();
+  emptyState.hidden = datedWorks.length > 0;
+  list.hidden = datedWorks.length === 0;
+
+  for (const work of datedWorks) {
+    const item = document.createElement("li");
+    item.className = "timeline-item";
+
+    const marker = document.createElement("div");
+    marker.className = "timeline-marker";
+    marker.setAttribute("aria-hidden", "true");
+
+    const content = document.createElement("article");
+    content.className = "timeline-card";
+
+    const date = document.createElement("time");
+    date.className = "timeline-date";
+    date.dateTime = work.date;
+    date.textContent = work.date;
+    content.append(date);
+
+    appendText(content, "h3", work.title);
+    const type = work.kind === "project"
+      ? "Proyecto"
+      : work.type === "individual"
+        ? "Individual"
+        : work.type === "grupal"
+          ? "Grupal"
+          : null;
+    const metadata = [work.subject, type].filter(Boolean);
+    if (metadata.length) {
+      const meta = document.createElement("p");
+      meta.className = "timeline-meta";
+      meta.textContent = metadata.join(" · ");
+      content.append(meta);
+    }
+    if (work.description) appendText(content, "p", work.description, "timeline-description");
+
+    item.append(marker, content);
+    list.append(item);
+  }
 }

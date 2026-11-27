@@ -30,6 +30,42 @@ function isSafeUrl(value) {
   }
 }
 
+function getEvidenceTarget(item) {
+  if (typeof item.url === "string" && isSafeUrl(item.url)) return item.url;
+  if (typeof item.path !== "string") return null;
+  if (/^(?:[A-Za-z]:[\\/]|\\\\|\/)/.test(item.path)) return null;
+  if (item.path.split(/[\\/]/).includes("..")) return null;
+  try {
+    const url = new URL(item.path, window.location.href);
+    if (url.origin !== window.location.origin) return null;
+    return url.href;
+  } catch {
+    return null;
+  }
+}
+
+function getEvidenceKind(item, target) {
+  if (item.type) return normalizeEvidenceType(item.type);
+  const lowerTarget = target.split(/[?#]/)[0].toLowerCase();
+  if (/\.(png|jpe?g|gif|webp|svg)$/.test(lowerTarget)) return "image";
+  if (/\.pdf$/.test(lowerTarget)) return "pdf";
+  if (/\.zip$/.test(lowerTarget)) return "document";
+  if (/\.((docx?|xlsx?|pptx?|txt|md|csv))$/.test(lowerTarget)) return "document";
+  if (/(youtube\.com|youtu\.be|vimeo\.com)/.test(lowerTarget)) return "video";
+  if (/github\.com/.test(lowerTarget)) return "github";
+  return "link";
+}
+
+function normalizeEvidenceType(value) {
+  const normalized = String(value).toLowerCase();
+  if (["image", "screenshots", "screenshot", "captura"].includes(normalized)) return "image";
+  if (["pdf"].includes(normalized)) return "pdf";
+  if (["document", "documents", "archivo", "file", "zip"].includes(normalized)) return "document";
+  if (["github", "repository", "repositorio"].includes(normalized)) return "github";
+  if (["video"].includes(normalized)) return "video";
+  return "link";
+}
+
 function isValidDate(value) {
   if (typeof value !== "string") return false;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
@@ -89,25 +125,48 @@ export function openWorkDetail(work, evidence, portfolioSubject) {
 
   const workEvidence = evidence.filter(item =>
     item.workId === work.id && item.workType === work.kind);
-  const validEvidence = workEvidence.filter(item => isSafeUrl(item.url));
+  const validEvidence = workEvidence
+    .map(item => ({ item, target: getEvidenceTarget(item) }))
+    .filter(entry => entry.target);
   if (validEvidence.length) {
     const section = document.createElement("section");
     section.className = "detail-section";
     const heading = document.createElement("h3");
     heading.textContent = "Evidencias";
-    const list = document.createElement("ul");
-    list.className = "detail-evidence";
-    for (const item of validEvidence) {
-      const listItem = document.createElement("li");
+    section.append(heading);
+
+    const gallery = document.createElement("div");
+    gallery.className = "detail-evidence";
+    for (const { item, target } of validEvidence) {
+      const kind = getEvidenceKind(item, target);
+      if (kind === "image") {
+        const figure = document.createElement("figure");
+        const image = document.createElement("img");
+        image.src = target;
+        image.alt = item.title || "Evidencia";
+        image.loading = "lazy";
+        figure.append(image);
+        if (item.title) {
+          const caption = document.createElement("figcaption");
+          caption.textContent = item.title;
+          figure.append(caption);
+        }
+        gallery.append(figure);
+        continue;
+      }
+
       const link = document.createElement("a");
-      link.href = item.url;
-      link.textContent = item.title;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      listItem.append(link);
-      list.append(listItem);
+      link.href = target;
+      link.textContent = item.title || kind;
+      link.className = `evidence-link evidence-link--${kind}`;
+      if (typeof item.path === "string" && typeof item.url !== "string") link.setAttribute("download", "");
+      else {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+      gallery.append(link);
     }
-    section.append(heading, list);
+    section.append(gallery);
     content.append(section);
   }
 
