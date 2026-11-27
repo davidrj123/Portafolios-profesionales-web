@@ -37,7 +37,11 @@ Y abrir `http://localhost:5500`.
 - `data/eduardo/portfolio.json`: trabajos, proyectos y evidencias de Eduardo.
 - `assets/images/` (previsto): fotografías y evidencias que se añadirán después.
 
-Cada archivo `portfolio.json` contiene tres listas independientes: `tasks`, `projects` y `evidence`. Pueden permanecer vacías. Los trabajos llevan `id`, `title` y `type` (`individual` o `grupal`); la descripción es opcional. Los proyectos llevan `id` y `title`, con descripción opcional. Las evidencias llevan `id`, `title`, `url`, `workId` y `workType` (`task` o `project`) para asociarlas a un trabajo o proyecto. La interfaz y las estadísticas se actualizan desde esos datos, sin cambios de JavaScript al añadir registros con esa estructura. Las estadísticas actuales cuentan `tasks`; los proyectos se muestran aparte.
+Cada archivo `portfolio.json` contiene tres listas independientes: `tasks`, `projects` y `evidence`. Pueden permanecer vacías.
+
+Los trabajos requieren `id`, `title` y `type` (`individual` o `grupal`). Pueden incluir `description`, `fullDescription`, `subject`, `date`, `category`, `activityType`, `coverImage`, `technologies`, `reflection` y `learnings`. Los proyectos requieren `id` y `title`, y pueden usar los mismos campos opcionales, salvo `type`. Las evidencias llevan `id`, `title`, `url`, `workId` y `workType` (`task` o `project`) para asociarlas a un trabajo o proyecto.
+
+Las categorías y tecnologías se renderizan únicamente cuando existen en los datos. `activityType` debe usar un valor coherente con los filtros, como `practica` o `investigacion`, y `date` debe ser una fecha ISO válida cuando se registre. Las URL de portadas y evidencias deben usar HTTP o HTTPS. La interfaz y las estadísticas se actualizan desde estos datos sin cambios de JavaScript al incorporar registros válidos.
 
 ## Próximos pasos
 1. Reemplazar los marcadores de fotografía por retratos reales.

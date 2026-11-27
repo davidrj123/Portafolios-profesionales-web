@@ -194,11 +194,42 @@
         </div>
         <div class="empty-work-state" data-empty-work>
           <div class="empty-icon">✳</div>
-          <h3>El portafolio está en preparación.</h3>
-          <p>En esta sección aparecerán las actividades, evidencias y proyectos realizados durante el semestre.</p>
-          <span>CONTENIDO EN PREPARACIÓN</span>
+          <h3>Aún no hay trabajos publicados.</h3>
+          <p>Los trabajos académicos aparecerán aquí cuando sean incorporados.</p>
         </div>
-        <div class="work-list" data-work-list hidden></div>
+        <div class="work-browser" data-work-browser hidden>
+          <div class="work-toolbar">
+            <label class="work-search">
+              <span>Buscar</span>
+              <input type="search" data-work-search placeholder="Título, descripción, materia, categoría o tecnología" autocomplete="off">
+            </label>
+            <label class="work-sort">
+              <span>Ordenar</span>
+              <select data-work-sort>
+                <option value="recent">Más recientes</option>
+                <option value="oldest">Más antiguos</option>
+                <option value="alphabetical">Orden alfabético</option>
+              </select>
+            </label>
+          </div>
+          <div class="work-filter-row">
+            <div class="work-filter-list" aria-label="Filtros de trabajos" data-work-filters>
+              <button type="button" class="work-filter is-active" data-filter="all" aria-pressed="true">Todos</button>
+              <button type="button" class="work-filter" data-filter="individual" aria-pressed="false">Individuales</button>
+              <button type="button" class="work-filter" data-filter="grupal" aria-pressed="false">Grupales</button>
+              <button type="button" class="work-filter" data-filter="project" aria-pressed="false">Proyectos</button>
+              <button type="button" class="work-filter" data-filter="practice" aria-pressed="false">Prácticas</button>
+              <button type="button" class="work-filter" data-filter="investigation" aria-pressed="false">Investigaciones</button>
+            </div>
+            <div class="category-filter-list" aria-label="Categorías" data-category-filters></div>
+          </div>
+          <p class="work-results" data-work-results aria-live="polite"></p>
+          <div class="work-list" data-work-list></div>
+          <div class="work-no-results" data-work-no-results hidden>
+            <h3>No se encontraron trabajos.</h3>
+            <p>Prueba con otro término o cambia los filtros seleccionados.</p>
+          </div>
+        </div>
       </section>
       <footer class="profile-footer"><span>ACADEMIC SHOWCASE</span><button data-home>← Volver a selección</button></footer>
     </section>
@@ -233,6 +264,10 @@
   </main>
 
   <div class="transition-overlay" aria-hidden="true"><div class="transition-word">ACADEMIC<br>SHOWCASE</div></div>
+  <dialog class="work-detail-dialog" data-work-detail aria-labelledby="work-detail-title">
+    <button type="button" class="detail-close" data-detail-close aria-label="Cerrar detalles">×</button>
+    <div data-detail-content></div>
+  </dialog>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="js/main.js"></script>

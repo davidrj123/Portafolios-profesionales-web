@@ -4,6 +4,7 @@ import { loadPortfolios, renderPortfolio } from "./portfolio.js";
 import { renderComparison } from "./comparison.js";
 import { initNavigation, showScreen } from "./navigation.js";
 import { initEntranceAnimations, runScreenTransition } from "./animations.js";
+import { initWorkDetail } from "./project-detail.js";
 
 let students = {};
 let portfolios = {};
@@ -69,6 +70,7 @@ async function init() {
   portfolios = await loadPortfolios(students);
   updateStudentCards();
   renderComparison(students, portfolios);
+  initWorkDetail();
   initNavigation({ onOpenStudent: openStudent, onOpenComparison: openComparison });
   initEntranceAnimations();
 }

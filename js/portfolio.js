@@ -1,3 +1,6 @@
+import { filterAndSortWorks, normalizeText } from "./filters.js";
+import { openWorkDetail } from "./project-detail.js";
+
 function emptyPortfolio() {
   return { tasks: [], projects: [], evidence: [] };
 }
@@ -11,7 +14,16 @@ function hasWorkFields(work) {
     && typeof work.id === "string"
     && typeof work.title === "string"
     && work.title.trim().length > 0
-    && (work.description === undefined || typeof work.description === "string");
+    && (work.description === undefined || typeof work.description === "string")
+    && (work.fullDescription === undefined || typeof work.fullDescription === "string")
+    && (work.subject === undefined || typeof work.subject === "string")
+    && (work.date === undefined || typeof work.date === "string")
+    && (work.category === undefined || typeof work.category === "string")
+    && (work.activityType === undefined || typeof work.activityType === "string")
+    && (work.coverImage === undefined || typeof work.coverImage === "string")
+    && (work.technologies === undefined || (Array.isArray(work.technologies) && work.technologies.every(item => typeof item === "string")))
+    && (work.reflection === undefined || typeof work.reflection === "string")
+    && (work.learnings === undefined || typeof work.learnings === "string");
 }
 
 function isPortfolio(value) {
@@ -58,10 +70,6 @@ function appendText(parent, tagName, text, className) {
   return element;
 }
 
-function evidenceForWork(evidence, work) {
-  return evidence.filter(item => item.workId === work.id && item.workType === work.kind);
-}
-
 function isSafeEvidenceUrl(value) {
   try {
     return ["http:", "https:"].includes(new URL(value, window.location.href).protocol);
@@ -70,48 +78,162 @@ function isSafeEvidenceUrl(value) {
   }
 }
 
+function isValidDate(value) {
+  if (typeof value !== "string") return false;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
 export function renderPortfolio(portfolio) {
   const emptyState = document.querySelector("[data-empty-work]");
+  const browser = document.querySelector("[data-work-browser]");
   const workList = document.querySelector("[data-work-list]");
+  const noResults = document.querySelector("[data-work-no-results]");
+  const resultsLabel = document.querySelector("[data-work-results]");
   const works = [
     ...portfolio.tasks.map(task => ({ ...task, kind: "task" })),
     ...portfolio.projects.map(project => ({ ...project, kind: "project" }))
   ];
 
-  workList.replaceChildren();
   emptyState.hidden = works.length > 0;
-  workList.hidden = works.length === 0;
+  browser.hidden = works.length === 0;
+  if (works.length === 0) return;
 
-  for (const work of works) {
-    const card = document.createElement("article");
-    card.className = "stat-card work-card";
-    appendText(card, "span", work.kind === "project" ? "PROYECTO" : "TRABAJO", "eyebrow");
-    appendText(card, "h3", work.title);
-    if (work.description) appendText(card, "p", work.description);
-    if (work.kind === "task" && work.type) {
-      appendText(card, "span", work.type === "individual" ? "Individual" : "Grupal", "work-type");
-    }
+  const search = browser.querySelector("[data-work-search]");
+  const sort = browser.querySelector("[data-work-sort]");
+  const filterButtons = [...browser.querySelectorAll("[data-filter]")];
+  const categoryFilters = browser.querySelector("[data-category-filters]");
+  let activeFilter = "all";
+  let activeCategory = "";
 
-    const workEvidence = evidenceForWork(portfolio.evidence, work);
-    if (workEvidence.length) {
-      const links = document.createElement("ul");
-      links.className = "work-evidence";
-      for (const item of workEvidence) {
-        if (!isSafeEvidenceUrl(item.url)) {
-          console.warn(`Se omitió una URL de evidencia no válida: ${item.url}`);
-          continue;
-        }
-        const listItem = document.createElement("li");
-        const link = document.createElement("a");
-        link.textContent = item.title;
-        link.href = item.url;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        listItem.append(link);
-        links.append(listItem);
-      }
-      card.append(links);
-    }
-    workList.append(card);
+  const categories = [...new Set(
+    works.map(work => work.category).filter(category => typeof category === "string" && category.trim())
+  )].sort((left, right) => left.localeCompare(right, "es"));
+  categoryFilters.replaceChildren();
+  if (categories.length) {
+    const allCategory = document.createElement("button");
+    allCategory.type = "button";
+    allCategory.className = "category-filter is-active";
+    allCategory.dataset.category = "";
+    allCategory.textContent = "Todas las categorías";
+    allCategory.setAttribute("aria-pressed", "true");
+    categoryFilters.append(allCategory);
   }
+  for (const category of categories) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "category-filter";
+    button.dataset.category = category;
+    button.textContent = category;
+    button.setAttribute("aria-pressed", "false");
+    categoryFilters.append(button);
+  }
+
+  for (const button of filterButtons) {
+    const visible = button.dataset.filter === "all"
+      || button.dataset.filter === "individual"
+      || button.dataset.filter === "grupal"
+      || (button.dataset.filter === "project" && works.some(work => work.kind === "project"))
+      || (button.dataset.filter === "practice" && works.some(work => normalizeText(work.activityType) === "practica"))
+      || (button.dataset.filter === "investigation" && works.some(work => normalizeText(work.activityType) === "investigacion"));
+    button.hidden = !visible;
+  }
+
+  const update = () => {
+    const filtered = filterAndSortWorks(works, {
+      query: search.value,
+      filter: activeFilter,
+      category: activeCategory,
+      sort: sort.value
+    });
+    workList.replaceChildren();
+    noResults.hidden = filtered.length > 0;
+    workList.hidden = filtered.length === 0;
+    resultsLabel.textContent = `${filtered.length} ${filtered.length === 1 ? "trabajo" : "trabajos"} encontrado${filtered.length === 1 ? "" : "s"}`;
+
+    for (const work of filtered) {
+      const card = document.createElement("article");
+      card.className = "work-card";
+
+      if (work.coverImage) {
+        if (isSafeEvidenceUrl(work.coverImage)) {
+          const image = document.createElement("img");
+          image.className = "work-cover";
+          image.src = work.coverImage;
+          image.alt = "";
+          image.loading = "lazy";
+          card.append(image);
+        } else {
+          console.warn(`Se omitió una imagen de portada no válida: ${work.coverImage}`);
+        }
+      }
+
+      const body = document.createElement("div");
+      body.className = "work-card-body";
+      if (work.category) appendText(body, "span", work.category, "work-category");
+      appendText(body, "h3", work.title);
+      if (work.description) appendText(body, "p", work.description, "work-description");
+
+      const metadata = document.createElement("div");
+      metadata.className = "work-meta";
+      const metaItems = [
+        work.subject,
+        isValidDate(work.date) ? work.date : null,
+        work.kind === "project"
+          ? "Proyecto"
+          : work.type === "individual"
+            ? "Individual"
+            : work.type === "grupal"
+              ? "Grupal"
+              : null,
+        work.activityType
+      ].filter(Boolean);
+      for (const item of metaItems) appendText(metadata, "span", item);
+      if (metadata.childElementCount) body.append(metadata);
+
+      if (Array.isArray(work.technologies) && work.technologies.length) {
+        const technologyList = document.createElement("div");
+        technologyList.className = "work-technologies";
+        for (const technology of work.technologies) appendText(technologyList, "span", technology);
+        body.append(technologyList);
+      }
+
+      const detailButton = document.createElement("button");
+      detailButton.type = "button";
+      detailButton.className = "work-detail-button";
+      detailButton.textContent = "Consultar detalles";
+      detailButton.addEventListener("click", () =>
+        openWorkDetail(work, portfolio.evidence, portfolio.subject));
+      body.append(detailButton);
+      card.append(body);
+      workList.append(card);
+    }
+  };
+
+  search.oninput = update;
+  sort.onchange = update;
+  for (const button of filterButtons) {
+    button.onclick = () => {
+      activeFilter = button.dataset.filter;
+      for (const item of filterButtons) {
+        const active = item === button;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      }
+      update();
+    };
+  }
+  for (const button of categoryFilters.querySelectorAll("button")) {
+    button.onclick = () => {
+      activeCategory = button.dataset.category;
+      for (const item of categoryFilters.querySelectorAll("button")) {
+        const active = item === button;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      }
+      update();
+    };
+  }
+  update();
 }
