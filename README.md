@@ -37,8 +37,10 @@ Y abrir `http://localhost:5500`.
 - `data/students.json`: información compartida de los estudiantes.
 - `data/guillermo/portfolio.json`: trabajos, proyectos y evidencias de Guillermo.
 - `data/eduardo/portfolio.json`: trabajos, proyectos y evidencias de Eduardo.
-- `assets/guillermo/`: fotografía y documentos independientes de Guillermo.
-- `assets/eduardo/`: fotografía y documentos independientes de Eduardo.
+- `assets/guillermo/photographs/`: fotografías independientes de Guillermo.
+- `assets/guillermo/documents/`: documentos independientes de Guillermo.
+- `assets/eduardo/photographs/`: fotografías independientes de Eduardo.
+- `assets/eduardo/documents/`: documentos independientes de Eduardo.
 
 Guillermo y Eduardo utilizan los mismos módulos, estilos y componentes. Su información personal y de contenido se mantiene separada en `data/students.json`, en sus archivos `portfolio.json` y en sus carpetas `assets/`.
 
