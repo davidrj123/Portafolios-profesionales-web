@@ -1,0 +1,26 @@
+{
+  "guillermo": {
+    "id": "guillermo",
+    "number": "01",
+    "name": "Guillermo David Rojas Jimenez",
+    "firstName": "Guillermo",
+    "initial": "G",
+    "identity": "BLUE IDENTITY",
+    "color": "blue",
+    "career": "Ingeniería de Sistemas Informáticos",
+    "semester": "Segundo semestre",
+    "subject": "Programación Web I"
+  },
+  "eduardo": {
+    "id": "eduardo",
+    "number": "02",
+    "name": "Eduardo Yabeta Zamorano",
+    "firstName": "Eduardo",
+    "initial": "E",
+    "identity": "VIOLET IDENTITY",
+    "color": "violet",
+    "career": "Ingeniería de Sistemas Informáticos",
+    "semester": "Segundo semestre",
+    "subject": "Programación Web I"
+  }
+}

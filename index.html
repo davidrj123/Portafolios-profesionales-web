@@ -67,15 +67,15 @@
           <div class="card-light"></div>
           <div class="student-visual">
             <div class="portrait-placeholder">
-              <span class="portrait-initial">G</span>
+              <span class="portrait-initial" data-student-initial></span>
               <span class="portrait-caption">FOTOGRAFÍA<br>PRÓXIMAMENTE</span>
             </div>
             <div class="portrait-orbit"></div>
           </div>
           <div class="student-info">
-            <span class="student-number">01 <i>— BLUE IDENTITY</i></span>
-            <h2>Guillermo David<br>Rojas Jimenez</h2>
-            <p>INGENIERÍA DE SISTEMAS<br>INFORMÁTICOS</p>
+            <span class="student-number" data-student-meta></span>
+            <h2 data-student-name></h2>
+            <p data-student-career></p>
             <button class="explore-button" data-open-student="guillermo">
               Explorar perfil <span aria-hidden="true">↗</span>
             </button>
@@ -89,15 +89,15 @@
           <div class="card-light"></div>
           <div class="student-visual">
             <div class="portrait-placeholder">
-              <span class="portrait-initial">E</span>
+              <span class="portrait-initial" data-student-initial></span>
               <span class="portrait-caption">FOTOGRAFÍA<br>PRÓXIMAMENTE</span>
             </div>
             <div class="portrait-orbit"></div>
           </div>
           <div class="student-info">
-            <span class="student-number">02 <i>— VIOLET IDENTITY</i></span>
-            <h2>Eduardo Yabeta<br>Zamorano</h2>
-            <p>INGENIERÍA DE SISTEMAS<br>INFORMÁTICOS</p>
+            <span class="student-number" data-student-meta></span>
+            <h2 data-student-name></h2>
+            <p data-student-career></p>
             <button class="explore-button" data-open-student="eduardo">
               Explorar perfil <span aria-hidden="true">↗</span>
             </button>
@@ -126,8 +126,8 @@
         <div class="profile-glow"></div>
         <div class="profile-hero-content">
           <span class="eyebrow" id="profile-eyebrow">STUDENT 01 · BLUE IDENTITY</span>
-          <h1 id="profile-name">Guillermo David<br>Rojas Jimenez</h1>
-          <p>Ingeniería de Sistemas Informáticos · Segundo semestre</p>
+          <h1 id="profile-name"></h1>
+          <p id="profile-description"></p>
           <a href="#profile-overview" class="text-link">Explorar trayectoria <span>↓</span></a>
         </div>
         <div class="profile-portrait" id="profile-portrait"><span id="profile-initial">G</span><small>FOTOGRAFÍA<br>PRÓXIMAMENTE</small></div>
@@ -152,12 +152,13 @@
           <div><span class="eyebrow">02 / SELECTED WORKS</span><h2>Trabajos <em>realizados.</em></h2></div>
           <span class="work-count">PROGRAMACIÓN WEB I</span>
         </div>
-        <div class="empty-work-state">
+        <div class="empty-work-state" data-empty-work>
           <div class="empty-icon">✳</div>
           <h3>Los proyectos están por llegar.</h3>
           <p>En esta sección aparecerán las actividades, evidencias y proyectos realizados durante el semestre.</p>
           <span>CONTENIDO EN PREPARACIÓN</span>
         </div>
+        <div class="work-list" data-work-list hidden></div>
       </section>
       <footer class="profile-footer"><span>ACADEMIC SHOWCASE</span><button data-home>← Volver a selección</button></footer>
     </section>
@@ -169,18 +170,18 @@
         <p>Una comparación visual y objetiva de las actividades realizadas por ambos estudiantes.</p>
       </div>
       <div class="comparison-columns">
-        <article class="comparison-person comparison-person--blue">
-          <span>01 / GUILLERMO</span><h2>Guillermo David<br>Rojas Jimenez</h2>
-          <div class="comparison-number">— <small>trabajos registrados</small></div>
-          <div class="comparison-line"><i></i></div>
+        <article class="comparison-person comparison-person--blue" data-comparison-student="guillermo">
+          <span data-comparison-label></span><h2 data-comparison-name></h2>
+          <div class="comparison-number"><span data-comparison-count>—</span> <small>trabajos registrados</small></div>
+          <div class="comparison-line"><i data-comparison-bar></i></div>
         </article>
-        <article class="comparison-person comparison-person--violet">
-          <span>02 / EDUARDO</span><h2>Eduardo Yabeta<br>Zamorano</h2>
-          <div class="comparison-number">— <small>trabajos registrados</small></div>
-          <div class="comparison-line"><i></i></div>
+        <article class="comparison-person comparison-person--violet" data-comparison-student="eduardo">
+          <span data-comparison-label></span><h2 data-comparison-name></h2>
+          <div class="comparison-number"><span data-comparison-count>—</span> <small>trabajos registrados</small></div>
+          <div class="comparison-line"><i data-comparison-bar></i></div>
         </article>
       </div>
-      <p class="comparison-note">Los indicadores se completarán cuando se incorporen los trabajos reales. Esta sección no determina ganadores.</p>
+      <p class="comparison-note">Los indicadores reflejan los trabajos registrados. Esta sección no determina ganadores.</p>
       <button class="back-button comparison-back" data-home>← Volver al inicio</button>
     </section>
   </main>

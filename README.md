@@ -25,12 +25,19 @@ Y abrir `http://localhost:5500`.
 - `index.html`: estructura y pantallas principales.
 - `css/styles.css`: estilos y responsive.
 - `css/animations.css`: animaciones CSS.
-- `js/main.js`: navegación, tema y lógica principal.
-- `js/students.js`: información de estudiantes.
-- `js/tasks.js`: lectura y estadísticas de trabajos.
+- `js/main.js`: inicialización, tema y coordinación de módulos.
+- `js/navigation.js`: navegación entre pantallas y menú móvil.
+- `js/students.js`: carga y presentación de los datos de estudiantes.
+- `js/portfolio.js`: carga de portafolios independientes y renderizado de trabajos, proyectos y evidencias.
+- `js/tasks.js`: cálculo de estadísticas de trabajos.
+- `js/comparison.js`: actualización de la comparación con datos de ambos portafolios.
 - `js/animations.js`: transiciones GSAP.
-- `data/tasks.json`: trabajos académicos (vacío por ahora).
-- `assets/images/`: fotografías y evidencias que se añadirán después.
+- `data/students.json`: información compartida de los estudiantes.
+- `data/guillermo/portfolio.json`: trabajos, proyectos y evidencias de Guillermo.
+- `data/eduardo/portfolio.json`: trabajos, proyectos y evidencias de Eduardo.
+- `assets/images/` (previsto): fotografías y evidencias que se añadirán después.
+
+Cada archivo `portfolio.json` contiene tres listas independientes: `tasks`, `projects` y `evidence`. Pueden permanecer vacías. Los trabajos llevan `id`, `title` y `type` (`individual` o `grupal`); la descripción es opcional. Los proyectos llevan `id` y `title`, con descripción opcional. Las evidencias llevan `id`, `title`, `url`, `workId` y `workType` (`task` o `project`) para asociarlas a un trabajo o proyecto. La interfaz y las estadísticas se actualizan desde esos datos, sin cambios de JavaScript al añadir registros con esa estructura. Las estadísticas actuales cuentan `tasks`; los proyectos se muestran aparte.
 
 ## Próximos pasos
 1. Reemplazar los marcadores de fotografía por retratos reales.
