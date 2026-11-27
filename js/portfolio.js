@@ -122,6 +122,14 @@ export function renderPortfolio(portfolio) {
   let activeFilter = "all";
   let activeCategory = "";
 
+  search.value = "";
+  sort.value = "recent";
+  for (const button of filterButtons) {
+    const active = button.dataset.filter === "all";
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  }
+
   const categories = [...new Set(
     works.map(work => work.category).filter(category => typeof category === "string" && category.trim())
   )].sort((left, right) => left.localeCompare(right, "es"));
