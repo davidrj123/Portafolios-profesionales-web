@@ -34,6 +34,18 @@ function isPortfolio(value) {
     || !value.tasks.every(task => hasWorkFields(task) && ["individual", "grupal"].includes(task.type))
     || !value.projects.every(hasWorkFields)) return false;
 
+  if (value.profile !== undefined) {
+    if (!isRecord(value.profile)
+      || (value.profile.biography !== undefined && typeof value.profile.biography !== "string")
+      || (value.profile.photography !== undefined && typeof value.profile.photography !== "string")
+      || (value.profile.skills !== undefined && (!Array.isArray(value.profile.skills)
+        || !value.profile.skills.every(skill => typeof skill === "string")))
+      || (value.profile.technologies !== undefined && (!Array.isArray(value.profile.technologies)
+        || !value.profile.technologies.every(technology => typeof technology === "string")))) {
+      return false;
+    }
+  }
+
   return value.evidence.every(item => {
     if (!isRecord(item)
       || typeof item.id !== "string"
