@@ -15,7 +15,6 @@ function updateProfile(student) {
   document.querySelector("#profile-number").textContent = student.number;
   setStudentName(document.querySelector("#profile-name"), student.name);
   document.querySelector("#profile-eyebrow").textContent = `STUDENT ${student.number} · ${student.identity}`;
-  document.querySelector("#profile-initial").textContent = student.initial;
   document.querySelector("#profile-description").textContent = `${student.career} · ${student.semester}`;
   document.querySelector("#profile-hero").style.setProperty("--profile-accent", student.color === "violet" ? "#c16aff" : "#35baff");
 
@@ -32,6 +31,28 @@ function updateProfile(student) {
   document.querySelector(".profile-glow").style.background = student.color === "violet"
     ? "radial-gradient(ellipse, rgba(193,106,255,.2), transparent 70%)"
     : "radial-gradient(ellipse, rgba(35,160,255,.18), transparent 70%)";
+  const portrait = document.querySelector("#profile-portrait");
+  const photography = portfolio.profile?.photography;
+  portrait.replaceChildren();
+  if (photography) {
+    const image = document.createElement("img");
+    image.src = photography;
+    image.alt = `Fotografía de ${student.name}`;
+    portrait.append(image);
+  } else {
+    const initial = document.createElement("span");
+    initial.id = "profile-initial";
+    initial.textContent = student.initial;
+    const caption = document.createElement("small");
+    caption.innerHTML = "FOTOGRAFÍA<br>PRÓXIMAMENTE";
+    portrait.append(initial, caption);
+  }
+  const objectiveCard = document.querySelector("[data-profile-objective]");
+  const objectives = portfolio.profile?.objectives;
+  objectiveCard.hidden = !objectives;
+  if (objectives) {
+    objectiveCard.querySelector("p").textContent = objectives;
+  }
   renderPortfolio(portfolio);
   renderTimeline(portfolio);
   document.querySelectorAll("[data-profile-switch]").forEach(button => {

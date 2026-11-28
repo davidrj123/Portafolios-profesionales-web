@@ -38,6 +38,7 @@ function isPortfolio(value) {
     if (!isRecord(value.profile)
       || (value.profile.biography !== undefined && typeof value.profile.biography !== "string")
       || (value.profile.photography !== undefined && typeof value.profile.photography !== "string")
+      || (value.profile.objectives !== undefined && typeof value.profile.objectives !== "string")
       || (value.profile.skills !== undefined && (!Array.isArray(value.profile.skills)
         || !value.profile.skills.every(skill => typeof skill === "string")))
       || (value.profile.technologies !== undefined && (!Array.isArray(value.profile.technologies)

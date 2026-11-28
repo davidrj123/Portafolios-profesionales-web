@@ -506,6 +506,12 @@ body.light-theme .versus-mark { background: #fff; }
 }
 .profile-portrait span { color: color-mix(in srgb, var(--profile-tone) 38%, transparent); }
 .profile-portrait small { line-height: 1.7; }
+.profile-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 .profile-glow { opacity: .8; }
 .content-section { padding: 78px 0; border-bottom-color: var(--line); }
 .section-heading { max-width: 680px; }
