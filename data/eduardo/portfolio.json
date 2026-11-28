@@ -5,7 +5,150 @@
     "skills": [],
     "technologies": []
   },
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "paginas-web-13-agosto-2026",
+      "title": "PAGINAS WEB 13 agosto 2026.docx",
+      "description": "Resolución de IP de dominios mediante nslookup en PowerShell, 5 ejemplos de sistemas web, 10 navegadores poco conocidos (con capturas y URLs) y 7 tipos de páginas web con 5 dominios cada uno.",
+      "subject": "Programación Web I",
+      "date": "2026-08-13",
+      "type": "individual"
+    },
+    {
+      "id": "lenguajes-backend-18-agosto-2026",
+      "title": "Lenguajes de Programación en el Backend (18 agosto).docx",
+      "description": "Análisis de 10 lenguajes de backend (Ruby, JavaScript, C++, C#, Perl, Scala, Kotlin, Java, PHP y Python) con características, ventajas, desventajas y ejemplos de código.",
+      "subject": "Programación Web I",
+      "date": "2026-08-18",
+      "type": "individual",
+      "activityType": "investigacion"
+    },
+    {
+      "id": "tipos-servidores-20-agosto-2026",
+      "title": "INFORME DE SISTEMAS_GRUPO2 (20agosto).docx",
+      "description": "Informe de U1 - TIPOS DE SERVIDORES centrado en FTP/FTPS/SFTP (vsftpd, FileZilla, ProFTPD, IIS), comandos en Ubuntu, aplicaciones, seguridad y ventajas/desventajas.",
+      "subject": "Programación Web I",
+      "date": "2026-08-20",
+      "type": "grupal"
+    },
+    {
+      "id": "cuestionarios-27-agosto-2026",
+      "title": "Resolución de cuestionarios27 agosto.pdf",
+      "description": "Cuestionario resuelto sobre DHCP, VPN, Servidor Proxy, Servidor Web, FTP, Clúster HPC, Servidor de Correo Electrónico, Groupware y Servidor de Base de Datos.",
+      "subject": "Programación Web I",
+      "date": "2026-08-27",
+      "type": "individual"
+    },
+    {
+      "id": "pagina-2-31-agosto-2026",
+      "title": "pagina2 ___31 agosto.html",
+      "description": "Práctica/archivo HTML correspondiente al 31 de agosto.",
+      "subject": "Programación Web I",
+      "date": "2026-08-31",
+      "type": "individual",
+      "activityType": "practica"
+    },
+    {
+      "id": "tarea-1-11-septiembre-2026",
+      "title": "TAREA 1_11 septiembre.html",
+      "description": "Tarea 1 en HTML correspondiente al 11 de septiembre.",
+      "subject": "Programación Web I",
+      "date": "2026-09-11",
+      "type": "individual",
+      "activityType": "practica"
+    },
+    {
+      "id": "auditoria-html-ipfs-14-septiembre-2026",
+      "title": "Auditoria HTML IPFS Eduardo Yabeta Zamorano_14septiembre.pdf",
+      "description": "Inspección técnica de etiquetas HTML en la página principal de https://ipfs.tech/ (estructura semántica, encabezados, listas, enlaces, formularios y conclusiones).",
+      "subject": "Programación Web I",
+      "date": "2026-09-14",
+      "type": "individual",
+      "activityType": "investigacion"
+    },
+    {
+      "id": "css-14-septiembre-2026",
+      "title": "css_14 septiembre css y style U2.html",
+      "description": "Práctica de CSS y estilos de la Unidad 2 (U2) en HTML correspondiente al 14 de septiembre.",
+      "subject": "Programación Web I",
+      "date": "2026-09-14",
+      "type": "individual",
+      "activityType": "practica"
+    },
+    {
+      "id": "tarea-5-noviembre-2026",
+      "title": "Tarea 5 nov.zip",
+      "description": "Paquete comprimido (.zip) de la Tarea 5 de noviembre.",
+      "subject": "Programación Web I",
+      "date": "2026-11-05",
+      "type": "individual"
+    },
+    {
+      "id": "control-versiones-16-noviembre-2026",
+      "title": "sistemas de conrol de veriones 16nov .zip",
+      "description": "Paquete comprimido (.zip) sobre sistemas de control de versiones correspondiente al 16 de noviembre.",
+      "subject": "Programación Web I",
+      "date": "2026-11-16",
+      "type": "individual",
+      "activityType": "investigacion"
+    },
+    {
+      "id": "github-colaborativo-23-noviembre-2026",
+      "title": "Github trabajo colaborativo 23nov.txt",
+      "description": "Enlace de trabajo colaborativo en GitHub (https://github.com/davidrj123/Buen-dia-pagina-web?classId=23a3dbc3-dd74-4f85-b46c-646e8f85a103&assignmentId=ac758175-9916-44a3-8224-bc025cf195a0&submissionId=12211100-3f01-9246-f601-07d9b97b0a58).",
+      "subject": "Programación Web I",
+      "date": "2026-11-23",
+      "type": "grupal"
+    },
+    {
+      "id": "alternativas-git-github-27-noviembre-2026",
+      "title": "Investigacion_Alternativas_Git_GitHub_Eduardo_Yabeta_27nov.docx",
+      "description": "Investigación sobre alternativas a Git (Mercurial, Bazaar, Fossil, Subversion, Perforce P4, TFVC) y plataformas de alojamiento en la nube y autoalojadas (GitLab.com, Bitbucket Cloud, Codeberg, Gitea, Forgejo, GitLab CE) con cuadros comparativos, capturas y conclusiones.",
+      "subject": "Programación Web I",
+      "date": "2026-11-27",
+      "type": "individual",
+      "activityType": "investigacion"
+    },
+    {
+      "id": "semantica-html",
+      "title": "semantica.html",
+      "description": "Archivo HTML enfocado en etiquetas y estructura semántica.",
+      "subject": "Programación Web I",
+      "type": "individual",
+      "activityType": "practica"
+    },
+    {
+      "id": "infografia",
+      "title": "infografia.png",
+      "description": "Imagen de infografía (.png).",
+      "subject": "Programación Web I",
+      "type": "individual"
+    },
+    {
+      "id": "gitlab-yze",
+      "title": "gitlab YZE.png",
+      "description": "Captura/imagen (.png) relacionada con GitLab (YZE).",
+      "subject": "Programación Web I",
+      "type": "individual"
+    },
+    {
+      "id": "mapas-mentales-consumo-apis",
+      "title": "Mapas mentales - Consumo de APIs.pdf",
+      "description": "Mapa mental sobre Unidad 4: Consumo de APIs REST (API REST/JSON, reglas JSON, pintado en HTML, fetch/async/await, códigos y métodos HTTP/CRUD, Mock API y errores frecuentes).",
+      "subject": "Programación Web I",
+      "type": "individual",
+      "activityType": "investigacion"
+    }
+  ],
   "projects": [],
-  "evidence": []
+  "evidence": [
+    {
+      "id": "github-trabajo-colaborativo-23-noviembre",
+      "title": "GitHub - Trabajo colaborativo",
+      "url": "https://github.com/davidrj123/Buen-dia-pagina-web?classId=23a3dbc3-dd74-4f85-b46c-646e8f85a103&assignmentId=ac758175-9916-44a3-8224-bc025cf195a0&submissionId=12211100-3f01-9246-f601-07d9b97b0a58",
+      "type": "github",
+      "workId": "github-colaborativo-23-noviembre-2026",
+      "workType": "task"
+    }
+  ]
 }
